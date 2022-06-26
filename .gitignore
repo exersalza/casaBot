@@ -1,0 +1,12 @@
+# Standard
+.idea/
+__pycache__/
+.DS_Store/
+
+
+# Custom
+config.*
+.config.*
+
+playground.*
+.playground.*
