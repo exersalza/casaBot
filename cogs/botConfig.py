@@ -23,8 +23,9 @@ class BotConfig(commands.Cog):
 
     @commands.Cog.listener()
     async def on_interaction(self, inter: Interaction):
-        print('something')
-        print(inter.expires_at)
+        pass
+        # print('something')
+        # print(inter.expires_at)
 
     @commands.Command
     async def reload_module(self, ctx):

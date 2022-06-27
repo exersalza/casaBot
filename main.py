@@ -4,6 +4,7 @@
 import os
 
 import nextcord
+from knxrcore.sql import mysql
 from nextcord.ext.commands import Context, errors
 
 import config
@@ -14,6 +15,8 @@ from nextcord.ext import commands
 class Main(commands.Bot):
     def __init__(self, token: str, intents=''):
         self.token = token
+        self.conn = mysql.Connection(host=config.db_host, user=config.db_user,
+                                     password=config.db_pass, db=config.db_name)
 
         if not intents:
             intents = nextcord.Intents.default()
