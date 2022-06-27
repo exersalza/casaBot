@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 # Imports
+import os
+
 import nextcord
 from nextcord.ext.commands import Context, errors
 
@@ -22,10 +24,19 @@ class Main(commands.Bot):
                          # help_command=None,
                          intents=intents)
 
+        self.cog_loader()
+
+    def cog_loader(self):
+        for i in os.listdir('cogs'):
+            if not i in ['__init__.py', '__pycache__']:
+                print(f'cogs.{i[:-3]}')
+                self.load_extension(f'cogs.{i[:-3]}')
+
     async def on_ready(self):
-        print('Logged in as')
+        print('\nLogged in as')
         print(self.user)
         print(self.user.id)
+        print(self._connection.heartbeat_timeout)
         print('------')
 
     @commands.Cog.listener()

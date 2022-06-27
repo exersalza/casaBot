@@ -6,11 +6,11 @@ if TYPE_CHECKING:
 
 
 class Casino(commands.Cog):
-    def __init__(self, bot: Main):
+    def __init__(self, bot: 'Main'):
         self.bot = bot
 
 
-def setup(bot):
+def setup(bot) -> int:
     bot.add_cog(Casino(bot))
     print('Casino loaded.')
-    return bot
+    return 0
