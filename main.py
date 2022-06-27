@@ -36,7 +36,6 @@ class Main(commands.Bot):
         print('\nLogged in as')
         print(self.user)
         print(self.user.id)
-        print(self._connection.heartbeat_timeout)
         print('------')
 
     @commands.Cog.listener()
