@@ -10,3 +10,6 @@ config.*
 
 playground.*
 .playground.*
+
+venv/
+.venv/
