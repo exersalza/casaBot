@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
 # Imports
-import asyncio
-
 import nextcord
 from nextcord.ext.commands import Context, errors
 
@@ -12,8 +10,9 @@ from nextcord.ext import commands
 
 
 class Main(commands.Bot):
-    def __init__(self, token, intents=''):
+    def __init__(self, token: str, intents=''):
         self.token = token
+
         if not intents:
             intents = nextcord.Intents.default()
             intents.message_content = True
