@@ -11,9 +11,10 @@ if TYPE_CHECKING:
     from main import Main
 
 
-async def create_select_options() -> List[SelectOption]:
+def create_select_options() -> List[SelectOption]:
     options = []
     needed = ['Bewerbung', 'Giveaway-Gewinner', 'Booster-tickets']
+
     for i in needed:
         options.append(SelectOption(label=i, value=i))
 
@@ -21,7 +22,7 @@ async def create_select_options() -> List[SelectOption]:
 
 
 class TicketView(View):
-    @nextcord.ui.select(custom_id='ticket_select', options=await create_select_options())
+    @nextcord.ui.select(custom_id='ticket_select', options=create_select_options())
     async def create_ticket(self, button: Button, inter: Interaction):
         print('create ticket')
 
@@ -41,6 +42,11 @@ class Ticket(commands.Cog):
     async def ticket(self, ctx: Context):
         ticket_view, ticket_embed = await create_ticket(ctx)
         await ctx.send(embed=ticket_embed, view=ticket_view)
+
+    @commands.Command
+    async def disconnect(self, ctx):
+        print(self.bot.scheduled_events)
+        # self.bot.dispatch('disconnect')
 
 
 def setup(bot) -> int:

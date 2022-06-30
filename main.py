@@ -30,6 +30,7 @@ class Main(commands.Bot):
         self.cog_loader()
 
     def cog_loader(self):
+        """ Load cogs """
         for i in os.listdir('cogs'):
             if not i in ['__init__.py', '__pycache__']:
                 print(f'cogs.{i[:-3]}')
@@ -40,6 +41,14 @@ class Main(commands.Bot):
         print(self.user)
         print(self.user.id)
         print('------')
+
+    @commands.Cog.listener()
+    async def on_disconnect(self):
+        await self.connect(reconnect=True)
+
+    @commands.Cog.listener()
+    async def on_connect(self) -> None:
+        print('Connected!')
 
     @commands.Cog.listener()
     async def on_command_error(self, context: Context, exception: errors.CommandError) -> None:
